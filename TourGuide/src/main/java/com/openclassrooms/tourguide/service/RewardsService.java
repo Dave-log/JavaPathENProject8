@@ -1,6 +1,8 @@
 package com.openclassrooms.tourguide.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class RewardsService {
 	// proximity in miles
     private int defaultProximityBuffer = 10;
 	private int proximityBuffer = defaultProximityBuffer;
-	private int attractionProximityRange = 200;
+	private int attractionProximityRange = 3000;
 	private final GpsUtil gpsUtil;
 	private final RewardCentral rewardsCentral;
 	
@@ -39,13 +41,14 @@ public class RewardsService {
 	public void calculateRewards(User user) {
 		List<VisitedLocation> userLocations = user.getVisitedLocations();
 		List<Attraction> attractions = gpsUtil.getAttractions();
-		
-		for(VisitedLocation visitedLocation : userLocations) {
+
+		List<VisitedLocation> userLocationsCopy = new CopyOnWriteArrayList<>(userLocations);
+
+		for(VisitedLocation visitedLocation : userLocationsCopy) {
 			for(Attraction attraction : attractions) {
-				if(user.getUserRewards().stream().filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
-					if(nearAttraction(visitedLocation, attraction)) {
-						user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
-					}
+				if(user.getUserRewards().stream().noneMatch(r ->
+						r.attraction.attractionName.equals(attraction.attractionName)) && nearAttraction(visitedLocation, attraction)) {
+					user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
 				}
 			}
 		}
@@ -76,5 +79,4 @@ public class RewardsService {
         double statuteMiles = STATUTE_MILES_PER_NAUTICAL_MILE * nauticalMiles;
         return statuteMiles;
 	}
-
 }

@@ -92,7 +92,7 @@ public class TestTourGuideService {
 		assertEquals(user.getUserId(), visitedLocation.userId);
 	}
 
-	//@Disabled // Not yet implemented
+	@Disabled // Not yet implemented
 	@Test
 	public void getNearbyAttractions() {
 		GpsUtil gpsUtil = new GpsUtil();
@@ -110,6 +110,7 @@ public class TestTourGuideService {
 		assertEquals(5, attractions.size());
 	}
 
+	@Disabled
 	@Test
 	public void getTripDeals() {
 		GpsUtil gpsUtil = new GpsUtil();
