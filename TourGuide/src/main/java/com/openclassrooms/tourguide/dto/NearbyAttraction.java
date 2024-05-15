@@ -6,5 +6,4 @@ public record NearbyAttraction(
         double attractionLongitude,
         double distance,
         int rewardPoints
-        )
-{}
+) {}
