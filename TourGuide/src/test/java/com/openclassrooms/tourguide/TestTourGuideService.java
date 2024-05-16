@@ -92,7 +92,7 @@ public class TestTourGuideService {
 		assertEquals(user.getUserId(), visitedLocation.userId);
 	}
 
-	@Disabled // Not yet implemented
+	//@Disabled // Not yet implemented
 	@Test
 	public void getNearbyAttractions() {
 		GpsUtil gpsUtil = new GpsUtil();
@@ -103,11 +103,11 @@ public class TestTourGuideService {
 		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
 		VisitedLocation visitedLocation = tourGuideService.trackUserLocation(user);
 
-		//List<NearbyAttractionsDTO> attractions = tourGuideService.getNearByAttractions(user);
+		NearbyAttractionsDTO nearbyAttractions = tourGuideService.getNearByAttractions(user);
 
 		tourGuideService.tracker.stopTracking();
 
-		//assertEquals(5, attractions.size());
+		assertEquals(5, nearbyAttractions.nearbyAttractionList().size());
 	}
 
 	@Disabled
