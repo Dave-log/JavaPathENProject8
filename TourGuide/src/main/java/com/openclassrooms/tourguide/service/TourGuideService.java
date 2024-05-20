@@ -111,7 +111,7 @@ public class TourGuideService {
 				})
 				.sorted(Comparator.comparingDouble(NearbyAttraction::distance))
 				.limit(5)
-				.collect(Collectors.toList());
+				.toList();
 
 		return new NearbyAttractionsDTO(
 				nearbyAttractions,
