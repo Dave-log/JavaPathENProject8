@@ -1,6 +1,5 @@
 package com.openclassrooms.tourguide.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -38,7 +37,7 @@ public class RewardsService {
 		proximityBuffer = defaultProximityBuffer;
 	}
 
-	public void calculateRewardsForAllUsers(List<User> users) throws ExecutionException, InterruptedException {
+	public void calculateRewardsForAllUsers(List<User> users) {
 		List<CompletableFuture<Void>> futures = users.stream()
 				.map(user -> CompletableFuture.runAsync(() -> calculateRewards(user), es))
 				.toList();
