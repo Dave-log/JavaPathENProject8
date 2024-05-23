@@ -40,23 +40,10 @@ public class RewardsService {
 	}
 
 	public void calculateRewardsForAllUsers(List<User> users) throws ExecutionException, InterruptedException {
-		//ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-		//ExecutorService executorService = Executors.newCachedThreadPool();
-		List<Future<Void>> futures = new ArrayList<>();
-
-		for (User user : users) {
-			Future<Void> future = es.submit(() -> {
-                calculateRewards(user);
-                //System.out.println(user.getUserName() + " updated.");
-				return null;
-			});
-			futures.add(future);
-		}
-		es.shutdown();
-
-		for (Future<Void> future : futures) {
-			future.get();
-		}
+		List<CompletableFuture<Void>> futures = users.stream()
+				.map(user -> CompletableFuture.runAsync(() -> calculateRewards(user), es))
+				.toList();
+		CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 	}
 
 	public void calculateRewards(User user) {

@@ -94,13 +94,6 @@ public class TestPerformance {
 		allUsers.forEach(u -> u.addToVisitedLocations(new VisitedLocation(u.getUserId(), attraction, new Date())));
 
 		rewardsService.calculateRewardsForAllUsers(allUsers);
-		//allUsers.forEach(u -> rewardsService.calculateRewards(u));
-		//allUsers.parallelStream().forEach(rewardsService::calculateRewards);
-//		List<CompletableFuture<Void>> futures = allUsers.stream()
-//				.map(user -> CompletableFuture.runAsync(() -> rewardsService.calculateRewards(user)))
-//				.toList();
-//
-//		CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
 
 		for (User user : allUsers) {
 			assertTrue(user.getUserRewards().size() > 0);
