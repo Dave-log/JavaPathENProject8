@@ -18,10 +18,13 @@ import tripPricer.Provider;
 
 @RestController
 public class TourGuideController {
-
-	@Autowired
 	TourGuideService tourGuideService;
-	
+
+    @Autowired
+    public TourGuideController(TourGuideService tourGuideService) {
+        this.tourGuideService = tourGuideService;
+    }
+
     @RequestMapping("/")
     public String index() {
         return "Greetings from TourGuide!";
