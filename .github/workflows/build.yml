@@ -22,16 +22,20 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: List directory contents
+        run: ls -R
+        working-directory: TourGuide
+
       - name: Install gpsUtil JAR
-        run: mvn install:install-file -Dfile=libs/gpsUtil.jar -DgroupId=gpsUtil -DartifactId=gpsUtil -Dversion=1.0.0 -Dpackaging=jar
+        run: mvn install:install-file -Dfile=../libs/gpsUtil.jar -DgroupId=gpsUtil -DartifactId=gpsUtil -Dversion=1.0.0 -Dpackaging=jar
         working-directory: TourGuide
 
       - name: Install tripPricer JAR
-        run:  mvn install:install-file -Dfile=libs/tripPricer.jar -DgroupId=tripPricer -DartifactId=tripPricer -Dversion=1.0.0 -Dpackaging=jar
+        run:  mvn install:install-file -Dfile=../libs/tripPricer.jar -DgroupId=tripPricer -DartifactId=tripPricer -Dversion=1.0.0 -Dpackaging=jar
         working-directory: TourGuide
 
       - name: Install rewardCentral JAR
-        run: mvn install:install-file -Dfile=libs/rewardCentral.jar -DgroupId=rewardCentral -DartifactId=rewardCentral -Dversion=1.0.0 -Dpackaging=jar
+        run: mvn install:install-file -Dfile=../libs/rewardCentral.jar -DgroupId=rewardCentral -DartifactId=rewardCentral -Dversion=1.0.0 -Dpackaging=jar
         working-directory: TourGuide
 
       - name: Build with Maven
