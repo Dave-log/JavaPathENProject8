@@ -41,7 +41,6 @@ jobs:
 
       - name: Package the app
         run: mvn package --file TourGuide/pom.xml
-        working-directory: TourGuide
 
       - name: Deploy the app
         if: github.ref == 'refs/heads/master'
