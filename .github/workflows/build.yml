@@ -22,12 +22,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Print working directory
-        run: echo 'Current directory $PWD'
-
       - name: Install gpsUtil JAR
         run: mvn install:install-file -Dfile=TourGuide/libs/gpsUtil.jar -DgroupId=gpsUtil -DartifactId=gpsUtil -Dversion=1.0.0 -Dpackaging=jar
-        working-directory: TourGuide
 
       - name: Install tripPricer JAR
         run:  mvn install:install-file -Dfile=TourGuide/libs/tripPricer.jar -DgroupId=tripPricer -DartifactId=tripPricer -Dversion=1.0.0 -Dpackaging=jar
