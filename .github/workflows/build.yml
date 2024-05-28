@@ -27,11 +27,9 @@ jobs:
 
       - name: Install tripPricer JAR
         run:  mvn install:install-file -Dfile=TourGuide/libs/tripPricer.jar -DgroupId=tripPricer -DartifactId=tripPricer -Dversion=1.0.0 -Dpackaging=jar
-        working-directory: TourGuide
 
       - name: Install rewardCentral JAR
         run: mvn install:install-file -Dfile=TourGuide/libs/rewardCentral.jar -DgroupId=rewardCentral -DartifactId=rewardCentral -Dversion=1.0.0 -Dpackaging=jar
-        working-directory: TourGuide
 
       - name: Build with Maven
         run: mvn clean compile
