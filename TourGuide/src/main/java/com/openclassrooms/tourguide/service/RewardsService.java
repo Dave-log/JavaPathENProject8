@@ -54,6 +54,7 @@ public class RewardsService {
 			for (Attraction attraction : attractions) {
 				if (isUserRewardExist(user, attraction) && nearAttraction(visitedLocation, attraction)) {
 						user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
+						//System.out.println(user.getUserName() + " updated!");
 					}
 			}
 		}
