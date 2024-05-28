@@ -41,8 +41,3 @@ jobs:
 
       - name: Package the app
         run: mvn -Dmaven.test.skip=true package --file TourGuide/pom.xml
-
-      - name: Deploy the app
-        if: github.ref == 'refs/heads/master'
-        run: mvn deploy
-        working-directory: TourGuide
