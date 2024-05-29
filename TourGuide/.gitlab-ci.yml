@@ -25,12 +25,20 @@ install_deps:
 build:
   stage: build
   script:
+    - echo "Building the project..."
     - mvn clean compile
+  only:
+    - master
+    - gitlab-ci
 
 test:
   stage: test
   script:
+    - echo "Running tests..."
     - mvn test
+  only:
+    - master
+    - gitlab-ci
 
 package:
   stage: package
