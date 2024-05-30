@@ -27,6 +27,8 @@ build:
   script:
     - echo "Building the project..."
     - mvn clean compile
+  dependencies:
+    - install_deps
   only:
     - master
     - gitlab-ci
@@ -36,6 +38,8 @@ test:
   script:
     - echo "Running tests..."
     - mvn test
+  dependencies:
+    - install_deps
   only:
     - master
     - gitlab-ci
@@ -44,6 +48,11 @@ package:
   stage: package
   script:
     - mvn -Dmaven.test.skip=true package
+  dependencies:
+    - install_deps
   artifacts:
     paths:
       - target/*.jar
+  only:
+    - master
+    - gitlab-ci
