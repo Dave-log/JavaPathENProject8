@@ -52,7 +52,7 @@ public class RewardsService {
 
 		for (VisitedLocation visitedLocation : userLocationsCopy) {
 			for (Attraction attraction : attractions) {
-				if (isUserRewardExist(user, attraction) && nearAttraction(visitedLocation, attraction)) {
+				if (isUserRewardMissing(user, attraction) && nearAttraction(visitedLocation, attraction)) {
 						user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
 					}
 			}
@@ -72,7 +72,7 @@ public class RewardsService {
 		return rewardsCentral.getAttractionRewardPoints(attraction.attractionId, user.getUserId());
 	}
 
-	private boolean isUserRewardExist(User user, Attraction attraction) {
+	private boolean isUserRewardMissing(User user, Attraction attraction) {
 		return user.getUserRewards()
 				.stream()
 				.noneMatch(r ->
