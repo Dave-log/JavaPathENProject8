@@ -99,7 +99,6 @@ public class TestTourGuideService {
 		TourGuideService tourGuideService = new TourGuideService(gpsUtil, rewardsService);
 
 		User user = new User(UUID.randomUUID(), "jon", "000", "jon@tourGuide.com");
-		VisitedLocation visitedLocation = tourGuideService.trackUserLocation(user).join();
 
 		NearbyAttractionsDTO nearbyAttractions = tourGuideService.getNearByAttractions(user);
 
