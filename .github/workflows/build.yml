@@ -7,7 +7,7 @@ on:
       - "github-actions"
 
 jobs:
-  setup:
+  setup-compile-test-package:
     runs-on: ubuntu-latest
     steps:
       - name: Download sources
