@@ -40,6 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: install_dependencies
     steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
       - name: compile with Maven
         run: mvn clean compile
         working-directory: TourGuide
@@ -48,6 +51,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: compile
     steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
       - name: Run tests
         run: mvn test
         working-directory: TourGuide
@@ -56,5 +62,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
       - name: Package the app
         run: mvn -Dmaven.test.skip=true package --file TourGuide/pom.xml
