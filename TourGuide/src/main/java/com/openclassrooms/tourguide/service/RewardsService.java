@@ -22,7 +22,7 @@ public class RewardsService {
 	private int proximityBuffer = defaultProximityBuffer;
     private final GpsUtil gpsUtil;
 	private final RewardCentral rewardsCentral;
-	private final ExecutorService es = Executors.newFixedThreadPool(50);
+	private final ExecutorService es = Executors.newFixedThreadPool(10);
 	
 	public RewardsService(GpsUtil gpsUtil, RewardCentral rewardCentral) {
 		this.gpsUtil = gpsUtil;

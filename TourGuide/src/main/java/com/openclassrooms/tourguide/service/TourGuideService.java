@@ -33,7 +33,7 @@ public class TourGuideService {
 	private final RewardsService rewardsService;
 	private final TripPricer tripPricer = new TripPricer();
 	public final Tracker tracker;
-	private final ExecutorService es = Executors.newFixedThreadPool(50);
+	private final ExecutorService es = Executors.newFixedThreadPool(10);
 
 	boolean testMode = true;
 
