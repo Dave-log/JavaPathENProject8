@@ -33,6 +33,7 @@ public class TourGuideService {
 	private final RewardsService rewardsService;
 	private final TripPricer tripPricer = new TripPricer();
 	public final Tracker tracker;
+	private final ExecutorService es = Executors.newCachedThreadPool();
 
 	boolean testMode = true;
 
@@ -85,7 +86,7 @@ public class TourGuideService {
 	}
 
 	public CompletableFuture<VisitedLocation> trackUserLocation(User user) {
-		return CompletableFuture.supplyAsync(() -> gpsUtil.getUserLocation(user.getUserId()))
+		return CompletableFuture.supplyAsync(() -> gpsUtil.getUserLocation(user.getUserId()), es)
 				.thenApply(visitedLocation -> {
 					user.addToVisitedLocations(visitedLocation);
 					rewardsService.calculateRewards(user);
